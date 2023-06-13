@@ -40,7 +40,7 @@ describe("Initial Test for the construct", () => {
   });
 
   describe("SimpleKubernetesWebApp", () => {
-    it("should contain a Service resource", () => {
+    it("Should contain a Service resource", () => {
       expect(
         Testing.synthScope((scope) => {
           new SimpleKubernetesWebApp(scope, "myapp-frontend-dev", {
@@ -55,7 +55,7 @@ describe("Initial Test for the construct", () => {
       ).toHaveResource(kubernetes.service.Service);
     });
 
-    it("should contain a Deployment resource", () => {
+    it("Should contain a Deployment resource", () => {
       expect(
         Testing.synthScope((scope) => {
           new SimpleKubernetesWebApp(scope, "myapp-frontend-dev", {
