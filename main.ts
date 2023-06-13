@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 import { App, TerraformStack } from "cdktf";
 import * as k8s from "@cdktf/provider-kubernetes";
 import * as path from "path";
-import { KubernetesWebAppDeployment, KubernetesNodePortService } from './constructs';
+import { SimpleKubernetesWebApp } from './constructs';
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, id: string) {
@@ -12,20 +12,14 @@ class MyStack extends TerraformStack {
       configPath: path.join(__dirname, '../kubeconfig.yaml'),
     });
 
-    new KubernetesWebAppDeployment(this, 'deployment', {
+    new SimpleKubernetesWebApp(this, 'app_frontend', {
       image: 'nginx:latest',
-      replicas: 3,
-      app: 'myapp',
+      replicas: 2,
+      app: 'frontend',
       component: 'frontend',
       environment: 'dev',
-    })
-
-    new KubernetesNodePortService(this, 'service', {
-      port: 30001,
-      app: 'myapp',
-      component: 'frontend',
-      environment: 'dev'
-    })
+      port: 30002,
+    });
   }
 }
 
