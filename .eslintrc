@@ -20,6 +20,13 @@
           "requireLast": false
         }
       }
+    ],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
     ]
   }
 }

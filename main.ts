@@ -1,7 +1,7 @@
-import { Construct } from "constructs";
-import { App, TerraformStack } from "cdktf";
-import * as k8s from "@cdktf/provider-kubernetes";
-import * as path from "path";
+import { Construct } from 'constructs';
+import { App, TerraformStack } from 'cdktf';
+import * as k8s from '@cdktf/provider-kubernetes';
+import * as path from 'path';
 import { SimpleKubernetesWebApp } from './constructs';
 
 class MyStack extends TerraformStack {
@@ -24,5 +24,5 @@ class MyStack extends TerraformStack {
 }
 
 const app = new App();
-new MyStack(app, "infra");
+new MyStack(app, 'infra');
 app.synth();
