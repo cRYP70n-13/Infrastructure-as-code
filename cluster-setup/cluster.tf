@@ -25,42 +25,14 @@ resource "kind_cluster" "default" {
 
     node {
       role = "control-plane"
-      extra_port_mappings {
-        container_port = 30005
-        host_port      = 30005
-        listen_address = "0.0.0.0"
-      }
 
-      extra_port_mappings {
-        container_port = 30006
-        host_port      = 30006
-        listen_address = "0.0.0.0"
-      }
-
-      extra_port_mappings {
-        container_port = 30007
-        host_port      = 30007
-        listen_address = "0.0.0.0"
-      }
-
-      extra_port_mappings {
-        container_port = 30008
-        host_port      = 30008
-        listen_address = "0.0.0.0"
-      }
-
-      extra_port_mappings {
-        container_port = 80
-        host_port      = 80
-        protocol       = "TCP"
-        listen_address = "0.0.0.0"
-      }
-
-      extra_port_mappings {
-        container_port = 443
-        host_port      = 443
-        protocol       = "TCP"
-        listen_address = "0.0.0.0"
+      dynamic "extra_port_mappings" {
+        content {
+          container_port = extra_port_mappings.value
+          host_port = extra_port_mappings.value
+          listen_address = "0.0.0.0"
+          protocol = extra_port_mappings.value == 80 || extra_port_mappings.value == 443 ? "TCP" : null
+        }
       }
     }
   }
