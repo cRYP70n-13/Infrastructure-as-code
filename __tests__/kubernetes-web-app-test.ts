@@ -69,5 +69,20 @@ describe('Initial Test for the construct', () => {
         })
       ).toHaveResource(kubernetes.deployment.Deployment);
     });
+
+    it('Should container a service of type cluster IP', () => {
+      expect(
+        Testing.synthScope((scope) => {
+          new SimpleKubernetesWebApp(scope, 'myapp-backend-dev', {
+            image: 'nginx:latest',
+            replicas: 1,
+            app: 'test',
+            component: 'infra',
+            port: 30004,
+            environment: 'dev'
+          })
+        })
+      ).toHaveResource(kubernetes.service.Service);
+    })
   });
 });

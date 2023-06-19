@@ -21,6 +21,9 @@
         }
       }
     ],
+    "max-len": "warn",
+    "indent": ["error", "tab"],
+    "space-before-blocks": "error",
     "@typescript-eslint/quotes": [
       "error",
       "single",
