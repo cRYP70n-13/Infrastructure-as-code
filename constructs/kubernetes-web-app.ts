@@ -177,43 +177,43 @@ export class KubernetesClusterIPService extends Construct {
 	}
 }
 
-// export class KubernetesIngress extends Construct {
-// 	public readonly resource: k8s.ingress.Ingress;
+export class KubernetesIngress extends Construct {
+	public readonly resource: k8s.ingress.Ingress;
 
-// 	constructor(
-// 		scope: Construct,
-// 		name: string,
-// 		config: KubernetesIngressConfig
-// 	) {
-// 		super(scope, name);
+	constructor(
+		scope: Construct,
+		name: string,
+		// config: KubernetesIngressConfig
+	) {
+		super(scope, name);
 
-// 		this.resource = new k8s.ingress.Ingress(this, name, {
-// 			// TODO: Complete this Ingress resource definition
-// 			metadata: {
-// 				name: 'a test ingress',
-// 				annotations: {
-// 					'nginx.ingress.kubernetes.io/rewrite-target': '/',
-// 				},
-// 			},
-// 			spec: {
-// 				ingressClassName: 'nginx-example',
-// 				backend: {
-// 					serviceName: 'my-app',
-// 					servicePort: '80',
-// 				},
-// 				rule: [{
-// 					host: 'test-host',
-// 					http: {
-// 						path: [{
-// 							path: '/',
-// 							backend: {
-// 								serviceName: 'test',
-// 								servicePort: '80',
-// 							}
-// 						}]
-// 					}
-// 				}]
-// 			}
-// 		});
-// 	}
-// }
+		this.resource = new k8s.ingress.Ingress(this, name, {
+			// TODO: Complete this Ingress resource definition
+			metadata: {
+				name: 'a test ingress',
+				annotations: {
+					'nginx.ingress.kubernetes.io/rewrite-target': '/',
+				},
+			},
+			spec: {
+				ingressClassName: 'nginx-example',
+				backend: {
+					serviceName: 'my-app',
+					servicePort: '80',
+				},
+				rule: [{
+					host: 'test-host',
+					http: {
+						path: [{
+							path: '/',
+							backend: {
+								serviceName: 'test',
+								servicePort: '80',
+							}
+						}]
+					}
+				}]
+			}
+		});
+	}
+}

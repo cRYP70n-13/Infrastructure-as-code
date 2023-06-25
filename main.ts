@@ -1,9 +1,12 @@
+/* eslint-disable max-len */
 import { App, TerraformStack } from 'cdktf';
 import { Construct } from 'constructs';
+import * as path from 'path';
+import * as k8s from '@cdktf/provider-kubernetes';
+import { MyKindCluster } from './cluster-setup/cluster';
+import { LocalRegistryConfigMap } from './cluster-setup/local-registry-configmap';
 import { SimpleKubernetesWebApp } from './constructs';
 import { SimpleKubernetesWebAppConfig } from './constructs/types';
-import * as k8s from '@cdktf/provider-kubernetes';
-import * as path from 'path';
 
 class MyStack extends TerraformStack {
 	constructor(scope: Construct, name: string, config: {
@@ -16,7 +19,9 @@ class MyStack extends TerraformStack {
 			configPath: path.join(__dirname, '../kubeconfig.yaml'),
 		});
 
-		// eslint-disable-next-line max-len
+		new MyKindCluster(this, 'test-cluster');
+		new LocalRegistryConfigMap(this, 'local-registry-hosting');
+
 		const appBackend = new SimpleKubernetesWebApp(this, 'back', config.backend);
 		new SimpleKubernetesWebApp(this, 'frontend', {
 			...config.frontend,
@@ -44,7 +49,7 @@ class MyStack extends TerraformStack {
 					}]
 				}]
 			}
-		})
+		});
 	}
 }
 

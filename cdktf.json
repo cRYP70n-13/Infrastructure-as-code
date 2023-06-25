@@ -4,7 +4,8 @@
   "projectId": "35c7c9e9-b658-4899-a571-6d554aecbddb",
   "sendCrashReports": "true",
   "terraformProviders": [
-    "hashicorp/kubernetes@~>2.14"
+    "hashicorp/kubernetes@~>2.14",
+    "tehcyx/kind@~>0.2.0"
   ],
   "terraformModules": [],
   "context": {
